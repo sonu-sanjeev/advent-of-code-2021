@@ -1,17 +1,42 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+
+
+    // Using regular for-loops.
+    fun part1(input: List<Int>): Int {
+        var inc = 0
+        for (i in 1 until input.size) {
+            if (input[i] > input[i - 1]) inc++
+        }
+        return inc
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+
+    fun part1Idiomatic(input: List<Int>) = input
+        .windowed(2)
+        .count { (a, b) -> b > a }
+
+
+    // Using regular for-loops.
+    fun part2(input: List<Int>): Int {
+        var inc = 0
+        for (i in 3 until input.size) {
+            val sum2 = input[i] + input[i - 1] + input[i - 2]
+            val sum1 = input[i - 1] + input[i - 2] + input[i - 3]
+            if (sum2 > sum1) inc++
+        }
+        return inc
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    //Cleaner way.
+    fun part2Idiomatic(input: List<Int>) = input
+        .windowed(3) { it.sum() }
+        .windowed(2)
+        .count { (a, b) -> b > a }
 
-    val input = readInput("Day01")
+
+    val input = readInput("Day01").map(String::toInt)
     println(part1(input))
+    println(part1Idiomatic(input))
     println(part2(input))
+    println(part2Idiomatic(input))
 }
