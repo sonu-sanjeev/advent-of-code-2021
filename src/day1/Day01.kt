@@ -1,6 +1,5 @@
 fun main() {
 
-
     // Using regular for-loops.
     fun part1(input: List<Int>): Int {
         var inc = 0
@@ -10,7 +9,7 @@ fun main() {
         return inc
     }
 
-
+    //Cleaner way.
     fun part1Idiomatic(input: List<Int>) = input
         .windowed(2)
         .count { (a, b) -> b > a }
@@ -34,7 +33,7 @@ fun main() {
         .count { (a, b) -> b > a }
 
 
-    val input = readInput("Day01").map(String::toInt)
+    val input = readInput("day1\\Day01").map(String::toInt)
     println(part1(input))
     println(part1Idiomatic(input))
     println(part2(input))
