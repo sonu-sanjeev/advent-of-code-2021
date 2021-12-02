@@ -2,7 +2,19 @@ package day2
 
 import readInput
 
-sealed class Navigation(val distance: Int)
+sealed class Navigation(val distance: Int) {
+    companion object {
+        fun fromText(input: String): Navigation {
+            val (direction, distance) = input.split(" ")
+            return when(direction) {
+                "forward" -> FORWARD(distance.toInt())
+                "down" -> DOWN(distance.toInt())
+                "up" -> UP(distance.toInt())
+                else -> error("Unknown direction!")
+            }
+        }
+    }
+}
 
 class FORWARD(distance: Int) : Navigation(distance)
 class DOWN(distance: Int) : Navigation(distance)
@@ -11,15 +23,9 @@ class UP(distance: Int): Navigation(distance)
 
 fun main() {
 
-    val navigation = readInput("day2\\Day02")
+    val navigation = readInput("day2/Day02")
         .map {
-            val (direction, distance) = it.split(" ")
-            when(direction) {
-                "forward" -> FORWARD(distance.toInt())
-                "down" -> DOWN(distance.toInt())
-                "up" -> UP(distance.toInt())
-                else -> error("Unknown navigation type!")
-            }
+            Navigation.fromText(it)
         }
 
     fun part1(): Int {
