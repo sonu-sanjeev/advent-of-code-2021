@@ -38,7 +38,7 @@ fun part2() {
 
 // This function assumes that the input given will always have a single item at the last bit position (here the parameter 'n' is the bit position).
 fun List<String>.oxygenGeneratorRating(n: Int): Int {
-    if (this.size == 1) return this[0].toInt(2)
+    if (size == 1) return single().toInt(2)
 
     val (zeros, ones) = getMapOfOnesAndZeros(n)
 
@@ -50,7 +50,7 @@ fun List<String>.oxygenGeneratorRating(n: Int): Int {
 }
 
 fun List<String>.co2scrubberRating(n: Int): Int {
-    if (this.size == 1) return this[0].toInt(2)
+    if (size == 1) return single().toInt(2)
 
     val (zeros, ones) = getMapOfOnesAndZeros(n)
 
