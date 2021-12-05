@@ -13,7 +13,7 @@ sealed class Instruction(val distance: Int) {
 
     companion object {
         fun fromInputText(input: String): Instruction {
-            val (direction, distanceText) = input.split(" ")
+            val (direction, distanceText) = input.split(" ", limit = 2)
             val distance = distanceText.toInt()
             return when (direction) {
                 "forward" -> Forwards(distance)

@@ -5,7 +5,7 @@ import readInput
 sealed class Navigation(val distance: Int) {
     companion object {
         fun fromText(input: String): Navigation {
-            val (direction, distance) = input.split(" ")
+            val (direction, distance) = input.split(" ", limit = 2)
             return when(direction) {
                 "forward" -> FORWARD(distance.toInt())
                 "down" -> DOWN(distance.toInt())
